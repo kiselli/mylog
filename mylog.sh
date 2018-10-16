@@ -37,9 +37,9 @@ function openToday {
 	less "$file"
 }
 
-# Write a new entry, stop after Ctrl-C is hit
+# Write a new entry, stop after Ctrl+D is hit
 function newEntry {
-	echo "..."
+	echo "Write your log and press Ctrl+D"
 
 	input=$(</dev/stdin)
 
