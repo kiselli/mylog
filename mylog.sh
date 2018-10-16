@@ -45,7 +45,6 @@ function newEntry {
 
 	if [ ! -f $file ]; then
 		echo "# $date" > "$file"
-		git add "$file"
 	fi
 
 	echo -e "## $time\n" >> "$file"
