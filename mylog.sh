@@ -50,7 +50,7 @@ function newEntry {
 	echo -e "## $time\n" >> "$file"
 
 	# 's/^#/###/m' - Fügt Überschriften 2 weitere Ebenen hinzu, damit sie Struktur nie zu weit nach unten rückt
-	echo -e "$input" | sed -e 's/^#/###/m' >> "$file"
+	echo -e "$input\n" | sed -e 's/^#/###/m' >> "$file"
 }
 
 usage="$(basename "$0") [-h] [-t] [-a] [-c] -- script to write developers log
