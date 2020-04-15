@@ -10,6 +10,7 @@ lg - Write new entry in mylog
 lg -t - today, show today file
 lg -a - all, show all files
 lg -c - concat, concat all files
+lg this was my work today - writes a line into the log
 ```
 
 # Features
