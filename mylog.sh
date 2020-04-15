@@ -8,6 +8,7 @@
 ## lg -t - today, show today file
 ## lg -a - all, show all files
 ## lg -c - concat, concat all files
+## lg this was my work today - writes a line into the log
 
 # Configure the script
 conf=$(realpath "$HOME/.mylog")
@@ -43,7 +44,7 @@ function newEntry {
 
 	input=$(</dev/stdin)
 
-	if [ ! -f $file ]; then
+	if [ ! -f "$file" ]; then
 		echo "# $date" > "$file"
 	fi
 
@@ -51,6 +52,19 @@ function newEntry {
 
 	# 's/^#/###/m' - Fügt Überschriften 2 weitere Ebenen hinzu, damit sie Struktur nie zu weit nach unten rückt
 	echo -e "$input\n" | sed -e 's/^#/###/m' >> "$file"
+}
+
+function quickEntry {
+
+        if [ ! -f "$file" ]; then
+                echo "# $date" > "$file"
+        fi
+
+        echo -e "## $time\n" >> "$file"
+
+        # 's/^#/###/m' - Fügt Überschriften 2 weitere Ebenen hinzu, damit sie Struktur nie zu weit nach unten rückt
+        echo -e "$1\n" | sed -e 's/^#/###/m' >> "$file"
+
 }
 
 usage="$(basename "$0") [-h] [-t] [-a] [-c] -- script to write developers log
@@ -85,4 +99,10 @@ shift $((OPTIND-1))
 
 [ "${1:-}" = "--" ] && shift
 
-newEntry
+if [ "$#" -ne 0 ]; then
+	quickEntry "$@"
+else
+	newEntry
+fi
+
+
