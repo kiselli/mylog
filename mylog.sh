@@ -100,7 +100,7 @@ shift $((OPTIND-1))
 [ "${1:-}" = "--" ] && shift
 
 if [ "$#" -ne 0 ]; then
-	quickEntry "$@"
+	quickEntry "$*"
 else
 	newEntry
 fi
